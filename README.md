@@ -1,4 +1,3 @@
-```markdown
 # Developer Portfolio
 
 A modern, responsive personal portfolio website built with **Django** and a custom frontend.
@@ -699,4 +698,4 @@ Feel free to explore the repository and follow my development journey.
 **Built with Python, Django, HTML, CSS and JavaScript.**
 
 **© Shubham Lokewar**
-```
+
