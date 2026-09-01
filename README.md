@@ -1,4 +1,4 @@
-# Shubham Lokewar — Developer Portfolio
+ Developer Portfolio
 
 A modern, responsive personal portfolio website built with Django and a custom frontend.
 
