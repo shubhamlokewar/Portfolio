@@ -1,0 +1,174 @@
+{% load i18n %}
+
+<nav
+    id="portfolio-sidebar"
+    class="portfolio-sidebar"
+    aria-label="{% translate 'Sidebar' %}"
+>
+
+    <!-- =====================================================
+         OVERVIEW
+    ====================================================== -->
+
+    <div class="ps-group">
+
+        <div class="ps-group-title">
+            Overview
+        </div>
+
+        <a
+            href="{% url 'portfolio_admin:index' %}"
+            class="ps-link {% if request.resolver_match.url_name == 'index' %}active{% endif %}"
+        >
+            <span class="ps-icon">⌂</span>
+            <span>Dashboard</span>
+        </a>
+
+    </div>
+
+
+    <!-- =====================================================
+         PORTFOLIO
+    ====================================================== -->
+
+    <div class="ps-group">
+
+        <div class="ps-group-title">
+            Portfolio
+        </div>
+
+        <a
+            href="{% url 'portfolio_admin:core_profile_changelist' %}"
+            class="ps-link"
+        >
+            <span class="ps-icon">PF</span>
+            <span>Profile</span>
+        </a>
+
+        <a
+            href="{% url 'portfolio_admin:core_sociallink_changelist' %}"
+            class="ps-link"
+        >
+            <span class="ps-icon">SL</span>
+            <span>Social Links</span>
+        </a>
+
+    </div>
+
+
+    <!-- =====================================================
+         CONTENT
+    ====================================================== -->
+
+    <div class="ps-group">
+
+        <div class="ps-group-title">
+            Content
+        </div>
+
+        <a
+            href="{% url 'portfolio_admin:portfolio_project_changelist' %}"
+            class="ps-link"
+        >
+            <span class="ps-icon">PR</span>
+            <span>Projects</span>
+        </a>
+
+        <a
+            href="{% url 'portfolio_admin:portfolio_skill_changelist' %}"
+            class="ps-link"
+        >
+            <span class="ps-icon">SK</span>
+            <span>Skills</span>
+        </a>
+
+        <a
+            href="{% url 'portfolio_admin:portfolio_technology_changelist' %}"
+            class="ps-link"
+        >
+            <span class="ps-icon">TE</span>
+            <span>Technologies</span>
+        </a>
+
+        <a
+            href="{% url 'portfolio_admin:portfolio_experience_changelist' %}"
+            class="ps-link"
+        >
+            <span class="ps-icon">EX</span>
+            <span>Experience</span>
+        </a>
+
+        <a
+            href="{% url 'portfolio_admin:portfolio_education_changelist' %}"
+            class="ps-link"
+        >
+            <span class="ps-icon">ED</span>
+            <span>Education</span>
+        </a>
+
+        <a
+            href="{% url 'portfolio_admin:portfolio_certificate_changelist' %}"
+            class="ps-link"
+        >
+            <span class="ps-icon">CE</span>
+            <span>Certificates</span>
+        </a>
+
+        <a
+            href="{% url 'portfolio_admin:portfolio_achievement_changelist' %}"
+            class="ps-link"
+        >
+            <span class="ps-icon">AC</span>
+            <span>Achievements</span>
+        </a>
+
+        <a
+            href="{% url 'portfolio_admin:portfolio_galleryimage_changelist' %}"
+            class="ps-link"
+        >
+            <span class="ps-icon">GA</span>
+            <span>Gallery</span>
+        </a>
+
+    </div>
+
+
+    <!-- =====================================================
+         CONTACT
+    ====================================================== -->
+
+    <div class="ps-group">
+
+        <div class="ps-group-title">
+            Contact
+        </div>
+
+        <a
+            href="{% url 'portfolio_admin:contact_contactmessage_changelist' %}"
+            class="ps-link"
+        >
+            <span class="ps-icon">CM</span>
+            <span>Messages</span>
+        </a>
+
+    </div>
+
+
+    <!-- =====================================================
+         BOTTOM
+    ====================================================== -->
+
+    <div class="ps-bottom">
+
+        <a
+            href="/"
+            target="_blank"
+            class="ps-link ps-view-site"
+        >
+            <span class="ps-icon">↗</span>
+            <span>View Portfolio</span>
+        </a>
+
+    </div>
+
+</nav>

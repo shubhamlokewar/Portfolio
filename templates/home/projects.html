@@ -1,0 +1,184 @@
+<!-- =========================================
+     PROJECTS SECTION
+========================================= -->
+
+<section
+    id="projects"
+    class="projects section"
+>
+
+    <div class="container">
+
+        <!-- SECTION HEADER -->
+
+        <div class="section-header">
+
+            <span class="section-label">
+                My Work
+            </span>
+
+            <h2 class="section-title">
+                Projects I've built
+            </h2>
+
+            <p class="section-description">
+                A selection of projects where I apply
+                development, data analysis and problem-solving
+                skills to build practical solutions.
+            </p>
+
+        </div>
+
+
+        <!-- PROJECTS GRID -->
+
+        {% if projects %}
+
+            <div class="projects__grid">
+
+                {% for project in projects %}
+
+                    <article class="project-card">
+
+                        <!-- IMAGE -->
+
+                        {% if project.thumbnail %}
+
+                            <div class="project-card__image">
+
+                                <img
+                                    src="{{ project.thumbnail.url }}"
+                                    alt="{{ project.title }}"
+                                    loading="lazy"
+                                >
+
+                            </div>
+
+                        {% elif project.featured_image %}
+
+                            <div class="project-card__image">
+
+                                <img
+                                    src="{{ project.featured_image.url }}"
+                                    alt="{{ project.title }}"
+                                    loading="lazy"
+                                >
+
+                            </div>
+
+                        {% endif %}
+
+
+                        <!-- CONTENT -->
+
+                        <div class="project-card__content">
+
+                            <div class="project-card__number">
+                                {{ forloop.counter|stringformat:"02d" }}
+                            </div>
+
+
+                            <h3 class="project-card__title">
+                                {{ project.title }}
+                            </h3>
+
+
+                            {% if project.short_description %}
+
+                                <p class="project-card__description">
+                                    {{ project.short_description }}
+                                </p>
+
+                            {% endif %}
+
+                            {% if project.technologies.all %}
+
+                                <div class="project-card__technologies">
+
+                            {% for technology in project.technologies.all %}
+
+                                <span class="project-card__technology">
+                            {{ technology.name }}
+                                </span>
+
+                            {% endfor %}
+
+                        </div>
+
+                        {% endif %}
+
+
+                            <!-- PROJECT LINKS -->
+
+                            <div class="project-card__links">
+
+                               {% if project.github_url %}
+
+    <a
+        href="{{ project.github_url }}"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="project-card__link project-card__github"
+        aria-label="View {{ project.title }} on GitHub"
+    >
+        <i class="fa-brands fa-github" aria-hidden="true"></i>
+
+        <span class="project-card__link-text">
+            GitHub
+        </span>
+
+        <span class="project-card__link-arrow">
+            ↗
+        </span>
+    </a>
+
+{% endif %}
+
+
+                                {% if project.live_url %}
+
+                                    <a
+                                        href="{{ project.live_url }}"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        class="project-card__link"
+                                    >
+                                        Live Demo
+                                        <span>↗</span>
+                                    </a>
+
+                                {% endif %}
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+                {% endfor %}
+
+            </div>
+
+        {% else %}
+
+            <div class="projects__empty">
+
+                <span>
+                    01
+                </span>
+
+                <h3>
+                    Projects coming soon
+                </h3>
+
+                <p>
+                    My projects will appear here soon.
+                </p>
+
+            </div>
+
+        {% endif %}
+
+    </div>
+
+</section>

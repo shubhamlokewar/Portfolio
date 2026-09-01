@@ -1,0 +1,601 @@
+/* =========================================
+   NAVBAR
+========================================= */
+
+
+/* =========================================
+   01. CUSTOMIZATION
+   -----------------------------------------
+   Edit these values to change the navbar.
+========================================= */
+
+.navbar {
+    --navbar-height: 80px;
+    --navbar-gap: 2rem;
+    --navbar-menu-gap: 1.5rem;
+    --navbar-blur: 14px;
+}
+
+
+/* =========================================
+   02. BASE
+========================================= */
+
+.navbar {
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    z-index: 1000;
+
+    width: 100%;
+    height: var(--navbar-height);
+
+    background:
+        color-mix(
+            in srgb,
+            var(--color-bg) 88%,
+            transparent
+        );
+
+    border-bottom:
+        1px solid
+        var(--color-border);
+
+    backdrop-filter:
+        blur(var(--navbar-blur));
+
+    -webkit-backdrop-filter:
+        blur(var(--navbar-blur));
+
+    transition:
+        background-color var(--transition-normal),
+        border-color var(--transition-normal),
+        box-shadow var(--transition-normal);
+}
+
+
+/* =========================================
+   03. CONTAINER
+========================================= */
+
+.navbar__container {
+    height: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: var(--navbar-gap);
+}
+
+
+/* =========================================
+   04. BRAND
+========================================= */
+
+.brand {
+    flex-shrink: 0;
+
+    display: inline-flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    line-height: 1;
+
+    text-decoration: none;
+}
+
+
+.brand__name {
+    color: var(--color-text);
+
+    font-size: 1.05rem;
+
+    font-weight: 800;
+
+    letter-spacing: -0.04em;
+
+    transition:
+        color var(--transition-fast);
+}
+
+
+.brand__portfolio {
+    margin-top: 0.3rem;
+
+    color: var(--color-text-muted);
+
+    font-size: 0.58rem;
+
+    font-weight: 600;
+
+    letter-spacing: 0.18em;
+
+    text-transform: uppercase;
+
+    transition:
+        color var(--transition-fast);
+}
+
+
+.brand__portfolio span {
+    color: var(--color-primary);
+
+    font-size: 0.85rem;
+}
+
+
+.brand:hover .brand__name {
+    color: var(--color-primary);
+}
+
+
+.brand:hover .brand__portfolio {
+    color: var(--color-text-secondary);
+}
+
+
+/* =========================================
+   05. RIGHT SIDE
+========================================= */
+
+.navbar__right {
+    display: flex;
+
+    align-items: center;
+
+    gap: 1.25rem;
+}
+
+
+/* =========================================
+   06. MENU
+========================================= */
+
+.navbar__menu {
+    display: flex;
+
+    align-items: center;
+
+    gap: var(--navbar-menu-gap);
+}
+
+
+.navbar__menu a {
+    position: relative;
+
+    padding:
+        0.35rem
+        0;
+
+    color: var(--color-text-secondary);
+
+    font-size: 0.82rem;
+
+    font-weight: 600;
+
+    text-decoration: none;
+
+    transition:
+        color var(--transition-fast);
+}
+
+
+.navbar__menu a::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    bottom: -0.3rem;
+
+    width: 100%;
+    height: 1px;
+
+    background: var(--color-primary);
+
+    transform:
+        scaleX(0);
+
+    transform-origin: center;
+
+    transition:
+        transform var(--transition-fast);
+}
+
+
+.navbar__menu a:hover {
+    color: var(--color-text);
+}
+
+
+.navbar__menu a:hover::after {
+    transform:
+        scaleX(1);
+}
+
+
+/* =========================================
+   07. THEME TOGGLE
+========================================= */
+
+.theme-toggle {
+    position: relative;
+
+    flex-shrink: 0;
+
+    width: 58px;
+    height: 30px;
+
+    padding: 0;
+
+    border: 0;
+
+    background: transparent;
+
+    cursor: pointer;
+}
+
+
+.theme-toggle__track {
+    position: relative;
+
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    border:
+        1px solid
+        var(--color-border);
+
+    border-radius: 999px;
+
+    background: var(--color-surface);
+
+    overflow: hidden;
+
+    transition:
+        background-color var(--transition-normal),
+        border-color var(--transition-normal);
+}
+
+
+/* =========================================
+   08. THEME ICONS
+========================================= */
+
+.theme-toggle__icon {
+    position: absolute;
+
+    top: 50%;
+
+    z-index: 1;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 18px;
+    height: 18px;
+
+    font-size: 0.75rem;
+
+    line-height: 1;
+
+    transform:
+        translateY(-50%);
+
+    pointer-events: none;
+}
+
+
+.theme-toggle__moon {
+    left: 5px;
+
+    color: var(--color-text-secondary);
+}
+
+
+.theme-toggle__sun {
+    right: 5px;
+
+    color: var(--color-text-secondary);
+}
+
+
+/* =========================================
+   09. THEME THUMB
+========================================= */
+
+.theme-toggle__thumb {
+    position: absolute;
+
+    z-index: 2;
+
+    top: 3px;
+    left: 3px;
+
+    width: 22px;
+    height: 22px;
+
+    border-radius: 50%;
+
+    background: var(--color-primary);
+
+    box-shadow:
+        0 2px 6px
+        rgba(0, 0, 0, 0.15);
+
+    transition:
+        transform var(--transition-normal),
+        background-color var(--transition-normal);
+}
+
+
+/* =========================================
+   10. DARK MODE
+========================================= */
+
+html[data-theme="dark"]
+.theme-toggle__thumb {
+    transform:
+        translateX(28px);
+}
+
+
+html[data-theme="dark"]
+.theme-toggle__track {
+    background: var(--color-bg);
+
+    border-color: var(--color-border);
+}
+
+
+/* =========================================
+   11. FOCUS
+========================================= */
+
+.theme-toggle:focus-visible {
+    outline:
+        2px solid
+        var(--color-primary);
+
+    outline-offset: 4px;
+}
+
+
+/* =========================================
+   12. MOBILE TOGGLE
+========================================= */
+
+.navbar__toggle {
+    display: none;
+
+    width: 42px;
+    height: 42px;
+
+    flex-shrink: 0;
+
+    align-items: center;
+    justify-content: center;
+
+    flex-direction: column;
+
+    gap: 5px;
+
+    border:
+        1px solid
+        var(--color-border);
+
+    border-radius: var(--radius-md);
+
+    background: var(--color-surface);
+
+    cursor: pointer;
+}
+
+
+.navbar__toggle span {
+    display: block;
+
+    width: 18px;
+    height: 2px;
+
+    border-radius: 999px;
+
+    background: var(--color-text);
+
+    transition:
+        transform var(--transition-fast),
+        opacity var(--transition-fast);
+}
+
+
+/* =========================================
+   13. MOBILE TOGGLE ACTIVE
+========================================= */
+
+.navbar__toggle.active span:nth-child(1) {
+    transform:
+        translateY(7px)
+        rotate(45deg);
+}
+
+
+.navbar__toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+
+.navbar__toggle.active span:nth-child(3) {
+    transform:
+        translateY(-7px)
+        rotate(-45deg);
+}
+
+
+/* =========================================
+   14. TABLET / MOBILE
+========================================= */
+
+@media (max-width: 900px) {
+
+    .navbar {
+        --navbar-height: 72px;
+    }
+
+
+    .navbar__toggle {
+        display: flex;
+    }
+
+
+    .navbar__right {
+        position: absolute;
+
+        top: calc(
+            var(--navbar-height) + 0.5rem
+        );
+
+        left: 1rem;
+        right: 1rem;
+
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+        gap: 1rem;
+
+        padding: 1rem;
+
+        border:
+            1px solid
+            var(--color-border);
+
+        border-radius: var(--radius-lg);
+
+        background: var(--color-bg);
+
+        box-shadow:
+            0 18px 40px
+            rgba(0, 0, 0, 0.08);
+
+        opacity: 0;
+
+        visibility: hidden;
+
+        transform:
+            translateY(-10px);
+
+        transition:
+            opacity var(--transition-fast),
+            visibility var(--transition-fast),
+            transform var(--transition-fast);
+    }
+
+
+    .navbar__right.active {
+        opacity: 1;
+
+        visibility: visible;
+
+        transform:
+            translateY(0);
+    }
+
+
+    .navbar__menu {
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+        gap: 0;
+
+        width: 100%;
+    }
+
+
+    .navbar__menu a {
+        display: block;
+
+        padding:
+            0.85rem
+            0.75rem;
+
+        border-radius: var(--radius-sm);
+
+        font-size: 0.9rem;
+    }
+
+
+    .navbar__menu a:hover {
+        background:
+            var(--color-primary-soft);
+
+        color: var(--color-primary);
+    }
+
+
+    .navbar__menu a::after {
+        display: none;
+    }
+
+
+    .theme-toggle {
+        align-self: flex-start;
+    }
+
+}
+
+
+/* =========================================
+   15. SMALL MOBILE
+========================================= */
+
+@media (max-width: 480px) {
+
+    .navbar__container {
+        width: min(
+            calc(100% - 1.25rem),
+            var(--container-width)
+        );
+    }
+
+
+    .brand__name {
+        font-size: 0.95rem;
+    }
+
+
+    .brand__portfolio {
+        font-size: 0.52rem;
+    }
+
+}
+
+
+/* =========================================
+   16. REDUCED MOTION
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .navbar *,
+    .navbar *::before,
+    .navbar *::after {
+        transition: none !important;
+    }
+
+}

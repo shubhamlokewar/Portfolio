@@ -1,0 +1,245 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Contact Me | Portfolio
+{% endblock %}
+
+
+{% block content %}
+
+<section
+    id="contact"
+    class="contact section"
+>
+
+    <div class="container contact__container">
+
+        <!-- =========================================
+             CONTACT INTRO
+        ========================================== -->
+
+        <div class="contact__intro">
+
+            <span class="section-label">
+                Get In Touch
+            </span>
+
+            <h1>
+                Let's work together.
+            </h1>
+
+            <p>
+                Have a project, opportunity, or question?
+                Send me a message and I'll get back to you.
+            </p>
+
+
+            <!-- CONTACT DETAILS -->
+
+            {% if profile %}
+
+                <div class="contact__details">
+
+                    {% if profile.email %}
+
+                        <a
+                            href="mailto:{{ profile.email }}"
+                            class="contact__detail"
+                        >
+                            <span>✉</span>
+                            <span>{{ profile.email }}</span>
+                        </a>
+
+                    {% endif %}
+
+
+                    {% if profile.location %}
+
+                        <div class="contact__detail">
+
+                            <span>⌖</span>
+
+                            <span>
+                                {{ profile.location }}
+                            </span>
+
+                        </div>
+
+                    {% endif %}
+
+                </div>
+
+            {% endif %}
+
+        </div>
+
+
+        <!-- =========================================
+             CONTACT FORM
+        ========================================== -->
+
+        <div class="contact__form-wrapper">
+
+            <!-- SUCCESS MESSAGE -->
+
+            {% if messages %}
+
+                {% for message in messages %}
+
+                    <div
+                        class="contact__success"
+                        role="alert"
+                    >
+                        {{ message }}
+                    </div>
+
+                {% endfor %}
+
+            {% endif %}
+
+
+            <form
+                method="post"
+                class="contact__form"
+                novalidate
+            >
+
+                {% csrf_token %}
+
+
+                <!-- NAME -->
+
+                <div class="contact__field">
+
+                    <label for="{{ form.name.id_for_label }}">
+                        Name
+                    </label>
+
+                    {{ form.name }}
+
+                    {% if form.name.errors %}
+
+                        {% for error in form.name.errors %}
+
+                            <span class="contact__error">
+                                {{ error }}
+                            </span>
+
+                        {% endfor %}
+
+                    {% endif %}
+
+                </div>
+
+
+                <!-- EMAIL -->
+
+                <div class="contact__field">
+
+                    <label for="{{ form.email.id_for_label }}">
+                        Email
+                    </label>
+
+                    {{ form.email }}
+
+                    {% if form.email.errors %}
+
+                        {% for error in form.email.errors %}
+
+                            <span class="contact__error">
+                                {{ error }}
+                            </span>
+
+                        {% endfor %}
+
+                    {% endif %}
+
+                </div>
+
+
+                <!-- SUBJECT -->
+
+                <div class="contact__field">
+
+                    <label for="{{ form.subject.id_for_label }}">
+                        Subject
+                    </label>
+
+                    {{ form.subject }}
+
+                    {% if form.subject.errors %}
+
+                        {% for error in form.subject.errors %}
+
+                            <span class="contact__error">
+                                {{ error }}
+                            </span>
+
+                        {% endfor %}
+
+                    {% endif %}
+
+                </div>
+
+
+                <!-- MESSAGE -->
+
+                <div class="contact__field">
+
+                    <label for="{{ form.message.id_for_label }}">
+                        Message
+                    </label>
+
+                    {{ form.message }}
+
+                    {% if form.message.errors %}
+
+                        {% for error in form.message.errors %}
+
+                            <span class="contact__error">
+                                {{ error }}
+                            </span>
+
+                        {% endfor %}
+
+                    {% endif %}
+
+                </div>
+
+
+                <!-- NON-FIELD ERRORS -->
+
+                {% if form.non_field_errors %}
+
+                    <div class="contact__error">
+
+                        {% for error in form.non_field_errors %}
+
+                            <p>{{ error }}</p>
+
+                        {% endfor %}
+
+                    </div>
+
+                {% endif %}
+
+
+                <!-- SUBMIT -->
+
+                <button
+                    type="submit"
+                    class="btn btn--primary contact__submit"
+                >
+                    Send Message
+                    <span>↗</span>
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

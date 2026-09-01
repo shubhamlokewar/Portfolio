@@ -1,0 +1,137 @@
+/* =========================================
+   REUSABLE COMPONENTS
+========================================= */
+
+
+/* =========================================
+   BUTTON
+========================================= */
+
+.btn {
+    min-height: 50px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 0.65rem;
+
+    padding:
+        0.8rem
+        1.35rem;
+
+    border: 1px solid transparent;
+
+    border-radius: var(--radius-md);
+
+    font-family: var(--font-primary);
+
+    font-size: 0.9rem;
+    font-weight: 600;
+
+    line-height: 1;
+
+    text-decoration: none;
+
+    cursor: pointer;
+
+    transition:
+        transform var(--transition-fast),
+        background-color var(--transition-fast),
+        border-color var(--transition-fast),
+        color var(--transition-fast),
+        box-shadow var(--transition-fast);
+}
+
+
+.btn:hover {
+    transform: translateY(-3px);
+}
+
+
+.btn span {
+    display: inline-block;
+
+    transition:
+        transform var(--transition-fast);
+}
+
+
+.btn:hover span {
+    transform: translateX(4px);
+}
+
+
+/* =========================================
+   PRIMARY BUTTON
+========================================= */
+
+.btn--primary {
+    background: var(--color-primary);
+
+    color: #ffffff;
+
+    border-color: var(--color-primary);
+}
+
+
+.btn--primary:hover {
+    box-shadow:
+        0 12px 28px
+        var(--color-primary-soft);
+}
+
+
+/* =========================================
+   SECONDARY BUTTON
+========================================= */
+
+.btn--secondary {
+    background: transparent;
+
+    color: var(--color-text);
+
+    border-color: var(--color-border);
+}
+
+
+.btn--secondary:hover {
+    color: var(--color-primary);
+
+    border-color: var(--color-primary);
+
+    background: var(--color-primary-soft);
+}
+
+
+/* =========================================
+   BUTTON - DISABLED
+========================================= */
+
+.btn:disabled,
+.btn.disabled {
+    opacity: 0.55;
+
+    cursor: not-allowed;
+
+    transform: none;
+
+    box-shadow: none;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 700px) {
+
+    .btn {
+        min-height: 48px;
+
+        padding:
+            0.75rem
+            1.15rem;
+    }
+
+}

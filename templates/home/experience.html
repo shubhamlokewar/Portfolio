@@ -1,0 +1,174 @@
+<!-- =========================================
+             EXPERIENCE SECTION
+========================================= -->
+
+<section
+    id="experience"
+    class="experience section"
+>
+
+    <div class="container">
+
+        <!-- SECTION HEADER -->
+
+        <div class="section-header">
+
+            <span class="section-label">
+                Experience
+            </span>
+
+            <h2 class="section-title">
+                My professional journey
+            </h2>
+
+            <p class="section-description">
+                Experience, roles and opportunities
+                that have shaped my technical journey.
+            </p>
+
+        </div>
+
+
+        <!-- EXPERIENCE LIST -->
+
+        {% if experiences %}
+
+            <div class="experience__list">
+
+                {% for experience in experiences %}
+
+                    <article class="experience-card">
+
+                        <!-- LEFT SIDE -->
+
+                        <div class="experience-card__timeline">
+
+                            <span class="experience-card__number">
+                                {{ forloop.counter|stringformat:"02d" }}
+                            </span>
+
+                            <span class="experience-card__line"></span>
+
+                        </div>
+
+
+                        <!-- CONTENT -->
+
+                        <div class="experience-card__content">
+
+                            <!-- DATE -->
+
+                            <div class="experience-card__date">
+
+                                {{ experience.start_date|date:"M Y" }}
+
+                                <span>—</span>
+
+                                {% if experience.is_current %}
+
+                                    Present
+
+                                {% elif experience.end_date %}
+
+                                    {{ experience.end_date|date:"M Y" }}
+
+                                {% else %}
+
+                                    Present
+
+                                {% endif %}
+
+                            </div>
+
+
+                            <!-- POSITION -->
+
+                            <h3 class="experience-card__position">
+                                {{ experience.position }}
+                            </h3>
+
+
+                            <!-- COMPANY -->
+
+                            <div class="experience-card__company">
+
+                                {% if experience.company_url %}
+
+                                    <a
+                                        href="{{ experience.company_url }}"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        {{ experience.company }}
+                                    </a>
+
+                                {% else %}
+
+                                    {{ experience.company }}
+
+                                {% endif %}
+
+                            </div>
+
+
+                            <!-- META -->
+
+                            <div class="experience-card__meta">
+
+                                <span>
+                                    {{ experience.get_employment_type_display }}
+                                </span>
+
+
+                                {% if experience.location %}
+
+                                    <span>
+                                        {{ experience.location }}
+                                    </span>
+
+                                {% endif %}
+
+                            </div>
+
+
+                            <!-- DESCRIPTION -->
+
+                            {% if experience.description %}
+
+                                <p class="experience-card__description">
+                                    {{ experience.description }}
+                                </p>
+
+                            {% endif %}
+
+                        </div>
+
+                    </article>
+
+                {% endfor %}
+
+            </div>
+
+        {% else %}
+
+            <div class="experience__empty">
+
+                <span>
+                    01
+                </span>
+
+                <h3>
+                    Experience coming soon
+                </h3>
+
+                <p>
+                    My professional experience will appear here.
+                </p>
+
+            </div>
+
+        {% endif %}
+
+    </div>
+
+</section>

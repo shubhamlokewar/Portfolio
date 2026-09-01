@@ -1,0 +1,487 @@
+{% extends "admin/base_site.html" %}
+
+{% load static %}
+
+{% block title %}
+    Admin Dashboard
+{% endblock %}
+
+
+{% block content %}
+
+    <!-- =====================================================
+         WELCOME
+    ====================================================== -->
+
+    <section class="pd-welcome">
+
+        <div>
+
+            <span class="pd-eyebrow">
+                PORTFOLIO 
+            </span>
+
+            <h1>
+                Welcome back {{ user.get_short_name|default:user.username }} !
+            </h1>
+
+            <p>
+                Manage your portfolio content, projects,
+                experience and personal information.
+            </p>
+
+        </div>
+
+        <a
+            href="{% url 'core:home' %}"
+            target="_blank"
+            class="pd-primary-button"
+        >
+            View Portfolio
+            <span>↗</span>
+        </a>
+
+    </section>
+
+
+    <!-- =====================================================
+         CONTENT OVERVIEW
+    ====================================================== -->
+
+    <section class="pd-section">
+
+        <div class="pd-section-heading">
+
+            <div>
+                <span class="pd-eyebrow">
+                    CONTENT
+                </span>
+
+                <h2>
+                    Portfolio overview
+                </h2>
+            </div>
+
+        </div>
+
+
+        <div class="pd-stats-grid">
+
+
+            <!-- PROJECTS -->
+
+            <a
+                href="{% url 'admin:portfolio_project_changelist' %}"
+                class="pd-stat-card"
+            >
+
+                <div class="pd-stat-top">
+
+                    <span class="pd-stat-icon">
+                        PR
+                    </span>
+
+                    <span class="pd-stat-arrow">
+                        ↗
+                    </span>
+
+                </div>
+
+                <strong>
+                    {{ admin_project_count }}
+                </strong>
+
+                <span class="pd-stat-name">
+                    Projects
+                </span>
+
+                <small>
+                    Portfolio projects
+                </small>
+
+            </a>
+
+
+            <!-- SKILLS -->
+
+            <a
+                href="{% url 'admin:portfolio_skill_changelist' %}"
+                class="pd-stat-card"
+            >
+
+                <div class="pd-stat-top">
+
+                    <span class="pd-stat-icon">
+                        SK
+                    </span>
+
+                    <span class="pd-stat-arrow">
+                        ↗
+                    </span>
+
+                </div>
+
+                <strong>
+                    {{ admin_skill_count }}
+                </strong>
+
+                <span class="pd-stat-name">
+                    Skills
+                </span>
+
+                <small>
+                    Professional skills
+                </small>
+
+            </a>
+
+
+            <!-- TECHNOLOGIES -->
+
+            <a
+                href="{% url 'admin:portfolio_technology_changelist' %}"
+                class="pd-stat-card"
+            >
+
+                <div class="pd-stat-top">
+
+                    <span class="pd-stat-icon">
+                        TE
+                    </span>
+
+                    <span class="pd-stat-arrow">
+                        ↗
+                    </span>
+
+                </div>
+
+                <strong>
+                    {{ admin_technology_count }}
+                </strong>
+
+                <span class="pd-stat-name">
+                    Technologies
+                </span>
+
+                <small>
+                    Tools & technologies
+                </small>
+
+            </a>
+
+
+            <!-- EXPERIENCE -->
+
+            <a
+                href="{% url 'admin:portfolio_experience_changelist' %}"
+                class="pd-stat-card"
+            >
+
+                <div class="pd-stat-top">
+
+                    <span class="pd-stat-icon">
+                        EX
+                    </span>
+
+                    <span class="pd-stat-arrow">
+                        ↗
+                    </span>
+
+                </div>
+
+                <strong>
+                    {{ admin_experience_count }}
+                </strong>
+
+                <span class="pd-stat-name">
+                    Experience
+                </span>
+
+                <small>
+                    Work experience
+                </small>
+
+            </a>
+
+
+            <!-- EDUCATION -->
+
+            <a
+                href="{% url 'admin:portfolio_education_changelist' %}"
+                class="pd-stat-card"
+            >
+
+                <div class="pd-stat-top">
+
+                    <span class="pd-stat-icon">
+                        ED
+                    </span>
+
+                    <span class="pd-stat-arrow">
+                        ↗
+                    </span>
+
+                </div>
+
+                <strong>
+                    {{ admin_education_count }}
+                </strong>
+
+                <span class="pd-stat-name">
+                    Education
+                </span>
+
+                <small>
+                    Academic records
+                </small>
+
+            </a>
+
+
+            <!-- CERTIFICATES -->
+
+            <a
+                href="{% url 'admin:portfolio_certificate_changelist' %}"
+                class="pd-stat-card"
+            >
+
+                <div class="pd-stat-top">
+
+                    <span class="pd-stat-icon">
+                        CE
+                    </span>
+
+                    <span class="pd-stat-arrow">
+                        ↗
+                    </span>
+
+                </div>
+
+                <strong>
+                    {{ admin_certificate_count }}
+                </strong>
+
+                <span class="pd-stat-name">
+                    Certificates
+                </span>
+
+                <small>
+                    Certifications
+                </small>
+
+            </a>
+
+
+            <!-- ACHIEVEMENTS -->
+
+            <a
+                href="{% url 'admin:portfolio_achievement_changelist' %}"
+                class="pd-stat-card"
+            >
+
+                <div class="pd-stat-top">
+
+                    <span class="pd-stat-icon">
+                        AC
+                    </span>
+
+                    <span class="pd-stat-arrow">
+                        ↗
+                    </span>
+
+                </div>
+
+                <strong>
+                    {{ admin_achievement_count }}
+                </strong>
+
+                <span class="pd-stat-name">
+                    Achievements
+                </span>
+
+                <small>
+                    Awards & milestones
+                </small>
+
+            </a>
+
+
+            <!-- GALLERY -->
+
+            <a
+                href="{% url 'admin:portfolio_galleryimage_changelist' %}"
+                class="pd-stat-card"
+            >
+
+                <div class="pd-stat-top">
+
+                    <span class="pd-stat-icon">
+                        GA
+                    </span>
+
+                    <span class="pd-stat-arrow">
+                        ↗
+                    </span>
+
+                </div>
+
+                <strong>
+                    {{ admin_gallery_count }}
+                </strong>
+
+                <span class="pd-stat-name">
+                    Gallery
+                </span>
+
+                <small>
+                    Portfolio images
+                </small>
+
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         QUICK ACCESS
+    ====================================================== -->
+
+    <section class="pd-section">
+
+        <div class="pd-section-heading">
+
+            <div>
+                <span class="pd-eyebrow">
+                    QUICK ACCESS
+                </span>
+
+                <h2>
+                    Personal information
+                </h2>
+            </div>
+
+        </div>
+
+
+        <div class="pd-feature-grid">
+
+
+            <!-- PROFILE -->
+
+            <a
+                href="{% url 'admin:core_profile_changelist' %}"
+                class="pd-feature-card"
+            >
+
+                <div class="pd-feature-icon">
+                    PF
+                </div>
+
+                <div class="pd-feature-content">
+
+                    <h3>
+                        Profile
+                    </h3>
+
+                    <p>
+                        Manage your name, title, bio,
+                        profile image, contact information
+                        and resume.
+                    </p>
+
+                </div>
+
+                <span class="pd-feature-arrow">
+                    ↗
+                </span>
+
+            </a>
+
+
+            <!-- SOCIAL LINKS -->
+
+            <a
+                href="{% url 'admin:core_sociallink_changelist' %}"
+                class="pd-feature-card"
+            >
+
+                <div class="pd-feature-icon">
+                    SL
+                </div>
+
+                <div class="pd-feature-content">
+
+                    <h3>
+                        Social Links
+                    </h3>
+
+                    <p>
+                        Manage GitHub, LinkedIn and other
+                        professional social profiles.
+                    </p>
+
+                </div>
+
+                <span class="pd-feature-arrow">
+                    ↗
+                </span>
+
+            </a>
+
+
+            <!-- CONTACT -->
+
+            <a
+                href="{% url 'admin:contact_contactmessage_changelist' %}"
+                class="pd-feature-card"
+            >
+
+                <div class="pd-feature-icon">
+                    CM
+                </div>
+
+                <div class="pd-feature-content">
+
+                    <h3>
+                        Contact Messages
+                    </h3>
+
+                    <p>
+                        View and manage messages submitted
+                        through your portfolio.
+                    </p>
+
+                </div>
+
+                <span class="pd-feature-arrow">
+                    ↗
+                </span>
+
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         FOOTER NOTE
+    ====================================================== -->
+
+    <div class="pd-footer">
+
+        <span>
+            Portfolio Management
+        </span>
+
+        <span>
+            Everything in one place.
+        </span>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,241 @@
+@import url("variables.css");
+@import url("reset.css");
+
+
+/* =========================================
+   GLOBAL
+========================================= */
+
+html {
+    scroll-behavior: smooth;
+
+    background-color: #87d0e6;
+}
+
+
+body {
+    margin: 0;
+
+    min-height: 100vh;
+
+    overflow-x: hidden;
+
+    font-family: var(--font-primary);
+
+    line-height: 1.5;
+
+    background-color: #87d0e6;
+
+    color: var(--color-text);
+
+    transition:
+        background-color var(--transition-normal),
+        color var(--transition-normal);
+}
+
+
+/* =========================================
+   LINKS
+========================================= */
+
+a {
+    color: inherit;
+
+    text-decoration: none;
+}
+
+
+/* =========================================
+   CONTAINER
+========================================= */
+
+.container {
+    width: min(
+        1200px,
+        calc(100% - 40px)
+    );
+
+    margin-inline: auto;
+}
+
+
+/* =========================================
+   SECTIONS
+========================================= */
+
+.section {
+    /*
+       Reduced from 7rem.
+
+       Previously every section had 7rem of padding
+       at both the top and bottom. That created roughly
+       14rem of combined empty space between consecutive
+       sections.
+
+       4.5rem keeps the page spacious without creating
+       the large gap visible between Education and Skills.
+    */
+    padding: 4.5rem 0;
+
+    background-color: var(--color-bg);
+
+    transition:
+        background-color var(--transition-normal);
+}
+
+
+/* =========================================
+   SECTION HEADER
+========================================= */
+
+.section-header {
+    max-width: 700px;
+
+    margin-bottom: 3rem;
+}
+
+
+.section-label {
+    display: inline-block;
+
+    margin-bottom: 0.75rem;
+
+    color: var(--color-primary);
+
+    font-size: var(--text-sm);
+
+    font-weight: 700;
+
+    letter-spacing: 0.1em;
+
+    text-transform: uppercase;
+}
+
+
+.section-title {
+    margin: 0 0 1rem;
+
+    color: var(--color-text);
+
+    font-size:
+        clamp(
+            2rem,
+            5vw,
+            3.5rem
+        );
+
+    line-height: 1.1;
+
+    font-weight: 800;
+}
+
+
+.section-description {
+    margin: 0;
+
+    color: var(--color-text-secondary);
+
+    font-size: 1.125rem;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================
+   FORM ELEMENTS
+========================================= */
+
+button,
+input,
+textarea,
+select {
+    font: inherit;
+}
+
+
+/* =========================================
+   BUTTON RESET
+========================================= */
+
+button {
+    color: inherit;
+}
+
+
+/* =========================================
+   SELECTION
+========================================= */
+
+::selection {
+    background-color: var(--color-primary);
+
+    color: #ffffff;
+}
+
+
+/* =========================================
+   DARK MODE
+========================================= */
+
+html[data-theme="dark"] {
+    color-scheme: dark;
+}
+
+html[data-theme="light"] {
+    color-scheme: light;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 700px) {
+
+    .container {
+        width:
+            calc(100% - 32px);
+    }
+
+
+    .section {
+        padding:
+            4rem 0;
+    }
+
+
+    .section-header {
+        margin-bottom: 2.25rem;
+    }
+
+}
+
+/* =========================================
+   FORCE PROJECT GITHUB VISIBILITY
+========================================= */
+
+html[data-theme="dark"] .project-card .project-card__links a.project-card__github {
+    display: inline-flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+
+    color: #ffffff !important;
+    background: transparent !important;
+
+    -webkit-text-fill-color: #ffffff !important;
+}
+
+html[data-theme="dark"] .project-card .project-card__links a.project-card__github * {
+    visibility: visible !important;
+    opacity: 1 !important;
+
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+}
+
+html[data-theme="dark"] .project-card .project-card__links a.project-card__github:hover,
+html[data-theme="dark"] .project-card .project-card__links a.project-card__github:hover * {
+    color: #60a5fa !important;
+    -webkit-text-fill-color: #60a5fa !important;
+}
+

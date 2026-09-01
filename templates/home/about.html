@@ -1,0 +1,687 @@
+
+<!-- =========================================
+     ABOUT SECTION
+========================================= -->
+
+<section
+    id="about"
+    class="about section"
+>
+
+    <div class="container">
+
+
+        <!-- =====================================
+             SECTION HEADER
+        ====================================== -->
+
+        <div class="section-header about__header">
+
+            <span class="section-label">
+                About Me
+            </span>
+
+            <h2 class="section-title">
+                Get to know me
+            </h2>
+
+            <p class="section-description">
+                A little more about who I am, what I do,
+                and the journey behind my work.
+            </p>
+
+        </div>
+
+
+        <!-- =====================================
+             ABOUT NAVIGATION
+        ====================================== -->
+
+        <div
+            class="about__tabs"
+            role="tablist"
+            aria-label="About sections"
+        >
+
+            <button
+                class="about__tab active"
+                type="button"
+                role="tab"
+                aria-selected="true"
+                aria-controls="about-panel"
+                data-tab="about"
+            >
+                About Me
+            </button>
+
+
+            <button
+                class="about__tab"
+                type="button"
+                role="tab"
+                aria-selected="false"
+                aria-controls="education-panel"
+                data-tab="education"
+            >
+                Education
+            </button>
+
+
+            <button
+                class="about__tab"
+                type="button"
+                role="tab"
+                aria-selected="false"
+                aria-controls="achievements-panel"
+                data-tab="achievements"
+            >
+                Achievements
+            </button>
+
+
+            <button
+                class="about__tab"
+                type="button"
+                role="tab"
+                aria-selected="false"
+                aria-controls="certificates-panel"
+                data-tab="certificates"
+            >
+                Certificates
+            </button>
+
+
+            <button
+                class="about__tab"
+                type="button"
+                role="tab"
+                aria-selected="false"
+                aria-controls="gallery-panel"
+                data-tab="gallery"
+            >
+                Gallery
+            </button>
+
+        </div>
+
+
+        <!-- =====================================
+             ABOUT ME
+        ====================================== -->
+
+        <div
+            id="about-panel"
+            class="about__panel active"
+            data-panel="about"
+            role="tabpanel"
+        >
+
+            <div class="about__content">
+
+
+                <!-- ABOUT TEXT -->
+
+                <div class="about__text">
+
+                    <span class="about__eyebrow">
+                        Developer • Learner • Builder
+                    </span>
+
+                    <h3>
+                        Building things with purpose.
+                    </h3>
+
+                    <p>
+                        I'm a passionate developer who enjoys
+                        solving problems, learning new concepts
+                        and turning ideas into practical digital
+                        solutions.
+                    </p>
+
+                    <p>
+                        I believe good software is not only about
+                        writing code. It's about understanding the
+                        problem, designing the right solution and
+                        creating something people can actually use.
+                    </p>
+
+                    <p>
+                        I'm continuously improving my skills across
+                        development, data and modern technology,
+                        while building projects that turn ideas
+                        into useful experiences.
+                    </p>
+
+                </div>
+
+
+                <!-- ABOUT DETAILS -->
+
+                <div class="about__details">
+
+                    <div class="about__detail">
+
+                        <span class="about__detail-label">
+                            Location
+                        </span>
+
+                        <span class="about__detail-value">
+                            India
+                        </span>
+
+                    </div>
+
+
+                    <div class="about__detail">
+
+                        <span class="about__detail-label">
+                            Focus
+                        </span>
+
+                        <span class="about__detail-value">
+                            Development & Data
+                        </span>
+
+                    </div>
+
+
+                    <div class="about__detail">
+
+                        <span class="about__detail-label">
+                            Experience
+                        </span>
+
+                        <span class="about__detail-value">
+                            Student / Developer
+                        </span>
+
+                    </div>
+
+
+                    <div class="about__detail">
+
+                        <span class="about__detail-label">
+                            Currently
+                        </span>
+
+                        <span class="about__detail-value">
+                            Learning & Building
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =====================================
+             EDUCATION
+        ====================================== -->
+
+        <div
+            id="education-panel"
+            class="about__panel"
+            data-panel="education"
+            role="tabpanel"
+            hidden
+        >
+
+            {% if educations %}
+
+                <div class="education-list">
+
+                    {% for education in educations %}
+
+                        <article class="education-card">
+
+                            <div class="education-card__top">
+
+                                <div>
+
+                                    <span class="education-card__degree">
+                                        {{ education.degree }}
+                                    </span>
+
+
+                                    {% if education.field_of_study %}
+
+                                        <span class="education-card__field">
+                                            {{ education.field_of_study }}
+                                        </span>
+
+                                    {% endif %}
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="education-card__institution">
+
+                                {% if education.institution_url %}
+
+                                    <a
+                                        href="{{ education.institution_url }}"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        {{ education.institution }}
+                                    </a>
+
+                                {% else %}
+
+                                    {{ education.institution }}
+
+                                {% endif %}
+
+                            </div>
+
+
+                            <div class="education-card__meta">
+
+                                <span>
+
+                                    {{ education.start_date|date:"M Y" }}
+
+                                    —
+
+                                    {% if education.end_date %}
+
+                                        {{ education.end_date|date:"M Y" }}
+
+                                    {% else %}
+
+                                        Present
+
+                                    {% endif %}
+
+                                </span>
+
+
+                                {% if education.grade %}
+
+                                    <span>
+                                        Grade: {{ education.grade }}
+                                    </span>
+
+                                {% endif %}
+
+                            </div>
+
+
+                            {% if education.description %}
+
+                                <p class="education-card__description">
+                                    {{ education.description }}
+                                </p>
+
+                            {% endif %}
+
+                        </article>
+
+                    {% endfor %}
+
+                </div>
+
+
+            {% else %}
+
+                <div class="about__panel-placeholder">
+
+                    <h3>
+                        Education
+                    </h3>
+
+                    <p>
+                        Education details will be added soon.
+                    </p>
+
+                </div>
+
+            {% endif %}
+
+        </div>
+
+
+        <!-- =====================================
+             ACHIEVEMENTS
+        ====================================== -->
+
+        <div
+            id="achievements-panel"
+            class="about__panel"
+            data-panel="achievements"
+            role="tabpanel"
+            hidden
+        >
+
+            {% if achievements %}
+
+                <div class="achievements-list">
+
+                    {% for achievement in achievements %}
+
+                        <article class="achievement-card">
+
+
+                            {% if achievement.image %}
+
+                                <div class="achievement-card__image">
+
+                                    <img
+                                        src="{{ achievement.image.url }}"
+                                        alt="{{ achievement.title }}"
+                                        loading="lazy"
+                                    >
+
+                                </div>
+
+                            {% endif %}
+
+
+                            <div class="achievement-card__content">
+
+
+                                <div class="achievement-card__top">
+
+                                    {% if achievement.date %}
+
+                                        <span class="achievement-card__date">
+                                            {{ achievement.date|date:"M Y" }}
+                                        </span>
+
+                                    {% endif %}
+
+                                </div>
+
+
+                                <h3 class="achievement-card__title">
+                                    {{ achievement.title }}
+                                </h3>
+
+
+                                {% if achievement.organization %}
+
+                                    <p class="achievement-card__organization">
+                                        {{ achievement.organization }}
+                                    </p>
+
+                                {% endif %}
+
+
+                                {% if achievement.description %}
+
+                                    <p class="achievement-card__description">
+                                        {{ achievement.description }}
+                                    </p>
+
+                                {% endif %}
+
+
+                                {% if achievement.url %}
+
+                                    <a
+                                        href="{{ achievement.url }}"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        class="achievement-card__link"
+                                    >
+                                        View Achievement
+                                        <span>↗</span>
+                                    </a>
+
+                                {% endif %}
+
+                            </div>
+
+                        </article>
+
+                    {% endfor %}
+
+                </div>
+
+
+            {% else %}
+
+                <div class="about__panel-placeholder">
+
+                    <h3>
+                        Achievements
+                    </h3>
+
+                    <p>
+                        No achievements have been added yet.
+                    </p>
+
+                </div>
+
+            {% endif %}
+
+        </div>
+
+
+        <!-- =====================================
+             CERTIFICATES
+        ====================================== -->
+
+        <div
+            id="certificates-panel"
+            class="about__panel"
+            data-panel="certificates"
+            role="tabpanel"
+            hidden
+        >
+
+            {% if certificates %}
+
+                <div class="certificates-list">
+
+                    {% for certificate in certificates %}
+
+                        <article class="certificate-card">
+
+
+                            {% if certificate.certificate_image %}
+
+                                <div class="certificate-card__image">
+
+                                    <img
+                                        src="{{ certificate.certificate_image.url }}"
+                                        alt="{{ certificate.title }}"
+                                        loading="lazy"
+                                    >
+
+                                </div>
+
+                            {% endif %}
+
+
+                            <div class="certificate-card__content">
+
+
+                                <div class="certificate-card__top">
+
+                                    {% if certificate.issue_date %}
+
+                                        <span class="certificate-card__date">
+                                            {{ certificate.issue_date|date:"M Y" }}
+                                        </span>
+
+                                    {% endif %}
+
+                                </div>
+
+
+                                <h3 class="certificate-card__title">
+                                    {{ certificate.title }}
+                                </h3>
+
+
+                                <p class="certificate-card__organization">
+                                    {{ certificate.issuing_organization }}
+                                </p>
+
+
+                                {% if certificate.description %}
+
+                                    <p class="certificate-card__description">
+                                        {{ certificate.description }}
+                                    </p>
+
+                                {% endif %}
+
+
+                                {% if certificate.credential_id %}
+
+                                    <p class="certificate-card__credential">
+
+                                        <span>
+                                            Credential ID:
+                                        </span>
+
+                                        {{ certificate.credential_id }}
+
+                                    </p>
+
+                                {% endif %}
+
+
+                                {% if certificate.credential_url %}
+
+                                    <a
+                                        href="{{ certificate.credential_url }}"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        class="certificate-card__link"
+                                    >
+                                        Verify Certificate
+                                        <span>↗</span>
+                                    </a>
+
+                                {% endif %}
+
+                            </div>
+
+                        </article>
+
+                    {% endfor %}
+
+                </div>
+
+
+            {% else %}
+
+                <div class="about__panel-placeholder">
+
+                    <h3>
+                        Certificates
+                    </h3>
+
+                    <p>
+                        No certificates have been added yet.
+                    </p>
+
+                </div>
+
+            {% endif %}
+
+        </div>
+
+
+        <!-- =====================================
+             GALLERY
+        ====================================== -->
+
+        <div
+            id="gallery-panel"
+            class="about__panel"
+            data-panel="gallery"
+            role="tabpanel"
+            hidden
+        >
+
+            {% if gallery_images %}
+
+                <div class="gallery-grid">
+
+                    {% for gallery_image in gallery_images %}
+
+                        <article class="gallery-card">
+
+
+                            <div class="gallery-card__image">
+
+                                <img
+                                    src="{{ gallery_image.image.url }}"
+                                    alt="{{ gallery_image.title|default:'Gallery image' }}"
+                                    loading="lazy"
+                                >
+
+                            </div>
+
+
+                            <div class="gallery-card__content">
+
+
+                                {% if gallery_image.category %}
+
+                                    <span class="gallery-card__category">
+                                        {{ gallery_image.category }}
+                                    </span>
+
+                                {% endif %}
+
+
+                                {% if gallery_image.title %}
+
+                                    <h3 class="gallery-card__title">
+                                        {{ gallery_image.title }}
+                                    </h3>
+
+                                {% endif %}
+
+
+                                {% if gallery_image.caption %}
+
+                                    <p class="gallery-card__caption">
+                                        {{ gallery_image.caption }}
+                                    </p>
+
+                                {% endif %}
+
+                            </div>
+
+                        </article>
+
+                    {% endfor %}
+
+                </div>
+
+
+            {% else %}
+
+                <div class="about__panel-placeholder">
+
+                    <h3>
+                        Gallery
+                    </h3>
+
+                    <p>
+                        No gallery images have been added yet.
+                    </p>
+
+                </div>
+
+            {% endif %}
+
+        </div>
+
+
+    </div>
+
+</section>
+
+

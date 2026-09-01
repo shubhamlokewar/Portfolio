@@ -1,0 +1,504 @@
+{% extends "admin/base.html" %}
+
+{% load static %}
+
+
+{% block title %}
+    Portfolio Admin
+{% endblock %}
+
+
+{% block extrastyle %}
+
+    {{ block.super }}
+
+    <link
+        rel="stylesheet"
+        href="{% static 'admin/css/custom_admin.css' %}"
+    >
+
+{% endblock %}
+
+
+{% block branding %}
+
+<div id="site-name">
+
+    <a
+        href="{% url 'portfolio_admin:index' %}"
+        class="admin-brand"
+    >
+
+        <span class="admin-brand-name">
+            shubhamlokewar
+        </span>
+
+        <span class="admin-brand-dot">
+            .
+        </span>
+
+    </a>
+
+</div>
+
+{% endblock %}
+
+
+{% block nav-global %}
+{% endblock %}
+
+
+{% block usertools %}
+
+<div class="portfolio-owner-menu">
+
+    <!-- =====================================================
+         MENU BUTTON
+    ====================================================== -->
+
+    <button
+        type="button"
+        id="portfolio-owner-button"
+        class="portfolio-owner-button"
+        aria-expanded="false"
+        aria-controls="portfolio-owner-dropdown"
+    >
+
+        <span class="portfolio-owner-avatar">
+            {{ user.username|first|upper }}
+        </span>
+
+        <span class="portfolio-owner-name">
+            {{ user.get_short_name|default:user.username }}
+        </span>
+
+        <span class="portfolio-owner-chevron">
+            ▾
+        </span>
+
+    </button>
+
+
+    <!-- =====================================================
+         DROPDOWN
+    ====================================================== -->
+
+    <div
+        id="portfolio-owner-dropdown"
+        class="portfolio-owner-dropdown"
+    >
+
+
+        <!-- OWNER HEADER -->
+
+        <div class="portfolio-owner-header">
+
+            <div class="portfolio-owner-avatar large">
+                {{ user.username|first|upper }}
+            </div>
+
+            <div class="portfolio-owner-details">
+
+                <strong>
+                    {{ user.get_full_name|default:user.username }}
+                </strong>
+
+                <span>
+                    Portfolio Owner
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="portfolio-owner-divider"></div>
+
+
+        <!-- DASHBOARD -->
+
+        <a
+            href="{% url 'portfolio_admin:index' %}"
+            class="portfolio-owner-item"
+        >
+
+            <span class="portfolio-owner-icon">
+                ⌂
+            </span>
+
+            <span>
+                Dashboard
+            </span>
+
+        </a>
+
+
+        <!-- VIEW PORTFOLIO -->
+
+        <a
+            href="/"
+            target="_blank"
+            class="portfolio-owner-item"
+        >
+
+            <span class="portfolio-owner-icon">
+                ↗
+            </span>
+
+            <span>
+                View Portfolio
+            </span>
+
+        </a>
+
+
+        <!-- THEME -->
+
+        <div class="portfolio-theme-wrapper">
+
+            <button
+                type="button"
+                id="portfolio-theme-button"
+                class="portfolio-owner-item portfolio-theme-button"
+                aria-expanded="false"
+            >
+
+                <span class="portfolio-owner-icon">
+                    ◐
+                </span>
+
+                <span>
+                    Theme
+                </span>
+
+                <span
+                    id="portfolio-theme-value"
+                    class="portfolio-owner-value"
+                >
+                    System
+                </span>
+
+            </button>
+
+
+            <div
+                id="portfolio-theme-options"
+                class="portfolio-theme-options"
+            >
+
+                <button
+                    type="button"
+                    data-theme="light"
+                >
+                    <span>☀</span>
+                    <span>Light</span>
+                </button>
+
+                <button
+                    type="button"
+                    data-theme="dark"
+                >
+                    <span>☾</span>
+                    <span>Dark</span>
+                </button>
+
+                <button
+                    type="button"
+                    data-theme="system"
+                >
+                    <span>◐</span>
+                    <span>System</span>
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="portfolio-owner-divider"></div>
+
+
+        <!-- PROFILE -->
+
+        <a
+            href="{% url 'portfolio_admin:core_profile_changelist' %}"
+            class="portfolio-owner-item"
+        >
+
+            <span class="portfolio-owner-icon">
+                👤
+            </span>
+
+            <span>
+                Profile
+            </span>
+
+        </a>
+
+
+        <!-- CHANGE PASSWORD -->
+
+        <a
+            href="{% url 'portfolio_admin:password_change' %}"
+            class="portfolio-owner-item"
+        >
+
+            <span class="portfolio-owner-icon">
+                🔑
+            </span>
+
+            <span>
+                Change Password
+            </span>
+
+        </a>
+
+
+        <!-- SETTINGS -->
+
+        <a
+            href="{% url 'portfolio_admin:core_profile_changelist' %}"
+            class="portfolio-owner-item"
+        >
+
+            <span class="portfolio-owner-icon">
+                ⚙
+            </span>
+
+            <span>
+                Portfolio Settings
+            </span>
+
+        </a>
+
+
+        <div class="portfolio-owner-divider"></div>
+
+
+        <!-- LOGOUT -->
+
+        <form
+            action="{% url 'portfolio_admin:logout' %}"
+            method="post"
+        >
+
+            {% csrf_token %}
+
+            <button
+                type="submit"
+                class="portfolio-owner-item portfolio-owner-logout"
+            >
+
+                <span class="portfolio-owner-icon">
+                    ↪
+                </span>
+
+                <span>
+                    Log Out
+                </span>
+
+            </button>
+
+        </form>
+
+
+    </div>
+
+</div>
+
+
+<script>
+
+(function () {
+
+    const menuButton =
+        document.getElementById(
+            "portfolio-owner-button"
+        );
+
+    const menu =
+        document.getElementById(
+            "portfolio-owner-dropdown"
+        );
+
+    const themeButton =
+        document.getElementById(
+            "portfolio-theme-button"
+        );
+
+    const themeOptions =
+        document.getElementById(
+            "portfolio-theme-options"
+        );
+
+    const themeValue =
+        document.getElementById(
+            "portfolio-theme-value"
+        );
+
+
+    if (!menuButton || !menu) {
+        return;
+    }
+
+
+    /* =====================================================
+       OWNER MENU
+    ====================================================== */
+
+    menuButton.addEventListener(
+        "click",
+        function (event) {
+
+            event.stopPropagation();
+
+            const open =
+                menu.classList.contains(
+                    "is-open"
+                );
+
+            menu.classList.toggle(
+                "is-open",
+                !open
+            );
+
+            menuButton.setAttribute(
+                "aria-expanded",
+                String(!open)
+            );
+
+        }
+    );
+
+
+    /* =====================================================
+       THEME
+    ====================================================== */
+
+    if (themeButton && themeOptions) {
+
+        themeButton.addEventListener(
+            "click",
+            function (event) {
+
+                event.stopPropagation();
+
+                const open =
+                    themeOptions.classList.contains(
+                        "is-open"
+                    );
+
+                themeOptions.classList.toggle(
+                    "is-open",
+                    !open
+                );
+
+                themeButton.setAttribute(
+                    "aria-expanded",
+                    String(!open)
+                );
+
+            }
+        );
+
+
+        themeOptions
+            .querySelectorAll(
+                "[data-theme]"
+            )
+            .forEach(function (button) {
+
+                button.addEventListener(
+                    "click",
+                    function (event) {
+
+                        event.stopPropagation();
+
+                        const selected =
+                            button.dataset.theme;
+
+                        const djangoTheme =
+                            selected === "system"
+                                ? "auto"
+                                : selected;
+
+
+                        localStorage.setItem(
+                            "django.admin.theme",
+                            djangoTheme
+                        );
+
+
+                        document.documentElement.dataset.theme =
+                            djangoTheme;
+
+
+                        themeValue.textContent =
+                            selected
+                                .charAt(0)
+                                .toUpperCase()
+                                +
+                                selected.slice(1);
+
+
+                        themeOptions.classList.remove(
+                            "is-open"
+                        );
+
+                        themeButton.setAttribute(
+                            "aria-expanded",
+                            "false"
+                        );
+
+                    }
+                );
+
+            });
+
+    }
+
+
+    /* =====================================================
+       CLOSE WHEN CLICKING OUTSIDE
+    ====================================================== */
+
+    document.addEventListener(
+        "click",
+        function () {
+
+            menu.classList.remove(
+                "is-open"
+            );
+
+            menuButton.setAttribute(
+                "aria-expanded",
+                "false"
+            );
+
+            if (themeOptions) {
+
+                themeOptions.classList.remove(
+                    "is-open"
+                );
+
+            }
+
+        }
+    );
+
+
+    menu.addEventListener(
+        "click",
+        function (event) {
+
+            event.stopPropagation();
+
+        }
+    );
+
+
+})();
+
+</script>
+
+{% endblock %}

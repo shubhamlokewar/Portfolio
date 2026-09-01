@@ -1,0 +1,104 @@
+<!-- =========================================
+     SKILLS SECTION
+========================================= -->
+
+<section
+    id="skills"
+    class="skills section"
+>
+
+    <div class="container">
+
+        <!-- SECTION HEADER -->
+
+        <div class="section-header">
+
+            <span class="section-label">
+                My Skills
+            </span>
+
+            <h2 class="section-title">
+                Skills & Expertise
+            </h2>
+
+            <p class="section-description">
+                Technologies and skills I use to build
+                practical and creative solutions.
+            </p>
+
+        </div>
+
+
+        <!-- GROUP SKILLS BY CATEGORY -->
+
+        {% regroup skills by category as skill_groups %}
+
+
+        {% if skills %}
+
+            <div class="skills__categories">
+
+                {% for group in skill_groups %}
+
+                    <div class="skills__category">
+
+                        <!-- CATEGORY -->
+
+                        <div class="skills__category-header">
+
+                            <span class="skills__category-number">
+                                {{ forloop.counter|stringformat:"02d" }}
+                            </span>
+
+                            <h3 class="skills__category-title">
+
+                                {% if group.grouper %}
+                                    {{ group.grouper }}
+                                {% else %}
+                                    Other
+                                {% endif %}
+
+                            </h3>
+
+                        </div>
+
+
+                        <!-- SKILLS -->
+
+                        <div class="skills__list">
+
+                            {% for skill in group.list %}
+
+                                <span class="skills__item">
+                                    {{ skill.name }}
+                                </span>
+
+                            {% endfor %}
+
+                        </div>
+
+                    </div>
+
+                {% endfor %}
+
+            </div>
+
+        {% else %}
+
+            <div class="skills__empty">
+
+                <h3>
+                    Skills coming soon
+                </h3>
+
+                <p>
+                    Add skills from the Django admin.
+                </p>
+
+            </div>
+
+        {% endif %}
+
+    </div>
+
+</section>
